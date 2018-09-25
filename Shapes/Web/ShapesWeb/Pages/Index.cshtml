@@ -1,0 +1,83 @@
+﻿@page
+@model IndexModel
+@using Microsoft.Extensions.Options
+@inject IOptionsSnapshot<AppSettings> appSettings
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<script type="text/javascript">
+    //const cUri = 'http://localhost:5000/api/Circles/New?maxRadius=250';
+    const cUri = '@appSettings.Value.CirclesUrl' + '/api/Circles/New?maxRadius=250';
+
+    const sUri = '@appSettings.Value.SquaresUrl' +'/api/Squares?maxLength=198';
+
+    function getNewCircle() {
+        $.ajax({
+            type: 'GET',
+            url: cUri,
+            success: function (data) {
+                var canvasContext = $('#circleCanvas')[0].getContext('2d');
+                canvasContext.beginPath();
+                canvasContext.arc(250, 250, data.radius, 0, 2 * Math.PI, false);
+                canvasContext.fillStyle = data.fillColor;
+                canvasContext.fill();
+                canvasContext.lineWidth = data.lineWidth;
+                canvasContext.strokeStyle = data.strokeColor;
+                canvasContext.stroke();
+            }
+        });
+    }
+
+    function getSquares() {
+        $.ajax({
+            type: 'GET',
+            url: sUri,
+            success: function (data) {
+                var canvasContext = $('#squareCanvas')[0].getContext('2d');
+                var i = 0;
+                $.each(data, function (key, item) {
+
+                    var sx = 0;
+                    var sy = 0;
+                    if (i == 1) {
+                        sx = 200;
+                        sy = 0;
+                    }
+                    if (i == 2) {
+                        sx = 0;
+                        sy = 200;
+                    }
+                    if (i == 3) {
+                        sx = 200;
+                        sy = 200;
+                    }
+
+                    canvasContext.fillStyle = item.fillColor;
+                    canvasContext.fillRect(sx, sy, item.length, item.length);
+
+                    //Draw Outline
+                    canvasContext.strokeStyle = item.strokeColor;
+                    canvasContext.lineWidth = item.lineWidth;
+                    canvasContext.strokeRect(sx, sy, item.length, item.length);
+
+                    i++;
+                });
+            }
+        });
+    }
+
+</script>
+
+<div class="row">
+    <div class="col-md-6">
+        <canvas id="circleCanvas" width="600" height="600" style="margin:2px"></canvas>
+        <br />
+
+        <input type="button" onclick="getNewCircle();" value="Draw Circle" />
+    </div>
+    <div class="col-md-6">
+        <canvas id="squareCanvas" width="600" height="600" style="margin:2px"></canvas>
+        <input type="button" onclick="getSquares();" value="Draw Squares" />
+    </div>
+</div>

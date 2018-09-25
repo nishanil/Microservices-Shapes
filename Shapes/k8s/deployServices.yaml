@@ -1,0 +1,87 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: circlesapi
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: circlesapi
+    spec:
+      containers:
+      - name: circlesapi
+        image: nishanil/circlesapi:latest
+        ports:
+        - containerPort: 80
+          name:  circlesapi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: circlesapi
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: circlesapi
+
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: squaresapi
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: squaresapi
+    spec:
+      containers:
+      - name: squaresapi
+        image: nishanil/squaresapi:latest
+        ports:
+        - containerPort: 80
+          name:  squaresapi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: squaresapi
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: squaresapi
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: shapesapigateway
+  labels:
+    app: shapesapigateway
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: shapesapigateway
+    spec:
+      containers:
+      - name: shapesapigw
+        image: nishanil/shapesapigateway:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shapesapigateway
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: shapesapigateway

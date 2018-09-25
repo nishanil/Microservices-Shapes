@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+
+  circlesapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "4000:80"
+  
+  squaresapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "4002:80"
+ 
+  shapesweb:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - CirclesUrl=http://localhost:5000
+      - SquaresUrl=http://localhost:5000
+    ports:
+      - "3000:80"
+
+  shapesapigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "5000:80"

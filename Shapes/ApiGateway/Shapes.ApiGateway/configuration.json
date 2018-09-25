@@ -1,0 +1,66 @@
+
+{
+
+    "ReRoutes": [
+
+      {
+
+        "DownstreamPathTemplate": "/api/Circles/{everything}",
+
+        "DownstreamScheme": "http",
+
+        "DownstreamHostAndPorts": [
+
+          {
+
+            "Host": "circlesapi",
+
+            "Port": 80
+
+          }
+
+        ],
+
+        "UpstreamPathTemplate": "/api/Circles/{everything}",
+
+        "UpstreamHttpMethod": []
+
+      },
+
+      {
+
+        "DownstreamPathTemplate": "/api/Squares",
+
+        "DownstreamScheme": "http",
+
+        "DownstreamHostAndPorts": [
+
+          {
+
+            "Host": "squaresapi",
+
+            "Port": 80
+
+          }
+
+        ],
+
+        "UpstreamPathTemplate": "/api/Squares",
+
+        "UpstreamHttpMethod": []
+
+      }
+
+    ],
+
+    "GlobalConfiguration": {
+
+      "RequestIdKey": "OcRequestId",
+
+      "AdministrationPath": "/administration"
+
+    }
+
+  }
+
+    

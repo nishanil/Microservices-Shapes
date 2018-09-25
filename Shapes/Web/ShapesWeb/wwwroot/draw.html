@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="button" onclick="getNewCircle();" value="Draw Circle" />
+        <input type="button" onclick="getSquare();" value="Draw Circle" />
+        <canvas id="myCanvas" width="500" height="500"style="border:1px solid #000000;"></canvas>
+    </div>
+    <script type="text/javascript">
+        //TODO: Replace the below JSON Data with Service Calls
+
+        const uri = 'http://localhost:5000/api/Circles/New?maxRadius=250';
+
+        function getNewCircle() {
+            $.ajax({
+                type: 'GET',
+                crossDomain : true,
+                url: uri,
+                success: function (data) {
+                    var canvas = document.getElementById('myCanvas');
+                    var canvasContext = canvas.getContext('2d');
+                   canvasContext.beginPath();
+                   canvasContext.arc(250, 250, data.radius, 0, 2 * Math.PI, false);
+                   canvasContext.fillStyle = data.fillColor;
+                   canvasContext.fill();
+                   canvasContext.lineWidth = data.lineWidth;
+                   canvasContext.strokeStyle = data.strokeColor;
+                   canvasContext.stroke();
+                }
+            });
+        }
+        var jsonCircleData = {
+            "type": "circle",
+            "x": 70,
+            "y": 70,
+            "radius": 50,
+            "color": "#ccc",
+            "fillColor": "#abcdef"
+        };
+
+        var jsonSquareData = {
+            "type": "square",
+            "x": 140,
+            "y": 20,
+            "length": 100,
+            "color": "#ccc",
+            "fillColor": "#abcdef"
+        };
+        ///////
+
+
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+
+        function drawCircle(c) {
+            context.beginPath();
+            context.arc(c.x, c.y, c.radius, 0, 2 * Math.PI, false);
+            context.fillStyle = c.fillColor;
+            context.fill();
+            context.lineWidth = 5;
+            context.strokeStyle = c.color;
+            context.stroke();
+        }
+
+        function drawSquare(s) {
+            //Fill Rectangle with Color 
+            context.fillStyle = s.fillColor;
+            context.fillRect(s.x, s.y, s.length, s.length);
+
+            //Draw Outline
+            context.strokeStyle = s.color;
+            context.lineWidth = 5;
+            context.strokeRect(s.x, s.y, s.length, s.length);
+
+        }
+
+        function getCircle() {
+            var circleData = $.extend(true, {}, jsonCircleData);
+            drawCircle(circleData);
+        }
+
+        function getSquare() {
+            var squareData = $.extend(true, {}, jsonSquareData);
+            drawSquare(squareData);
+        }
+    </script>
+</body>
+
+</html>
