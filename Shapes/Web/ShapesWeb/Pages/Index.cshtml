@@ -8,9 +8,9 @@
 
 <script type="text/javascript">
     // Both urls will get the same ip:port since we configured an API-Gateway. 
-    const cUri = '@appSettings.Value.CirclesUrl' + '/api/Circles/New?maxRadius=250';
+    const cUri = '@appSettings.Value.CirclesUrl' + '/c/Random?maxRadius=250';
 
-    const sUri = '@appSettings.Value.SquaresUrl' +'/api/Squares?maxLength=198';
+    const sUri = '@appSettings.Value.SquaresUrl' +'/s?maxLength=198';
 
     function getNewCircle() {
         $.ajax({
@@ -73,11 +73,10 @@
     <div class="col-md-6">
         <canvas id="circleCanvas" width="600" height="600" style="margin:2px"></canvas>
         <br />
-
-        <input type="button" onclick="getNewCircle();" value="Draw Circle" />
+        <input type="button" onclick="getNewCircle();" value="Draw a Random Circle" />
     </div>
     <div class="col-md-6">
         <canvas id="squareCanvas" width="600" height="600" style="margin:2px"></canvas>
-        <input type="button" onclick="getSquares();" value="Draw Squares" />
+        <input type="button" onclick="getSquares();" value="Draw 4 Squares" />
     </div>
 </div>

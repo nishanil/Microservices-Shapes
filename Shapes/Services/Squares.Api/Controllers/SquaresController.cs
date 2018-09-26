@@ -11,7 +11,7 @@ namespace Squares.Api.Controllers
     [ApiController]
     public class SquaresController : ControllerBase
     {
-        string[] colorSet = new[] {"#f25022","#7fba00","#01a4ef","#ffb901"};
+        readonly string[] colorSet = new[] {"#f25022","#7fba00","#01a4ef","#ffb901"};
         // GET api/squares
         [HttpGet]
         [ProducesResponseType(400)]

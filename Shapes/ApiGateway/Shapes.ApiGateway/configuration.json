@@ -21,7 +21,7 @@
 
         ],
 
-        "UpstreamPathTemplate": "/api/Circles/{everything}",
+        "UpstreamPathTemplate": "/c/{everything}",
 
         "UpstreamHttpMethod": []
 
@@ -45,7 +45,7 @@
 
         ],
 
-        "UpstreamPathTemplate": "/api/Squares",
+        "UpstreamPathTemplate": "/s",
 
         "UpstreamHttpMethod": []
 

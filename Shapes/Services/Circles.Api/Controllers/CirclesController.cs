@@ -20,6 +20,7 @@ namespace Circles.Api.Controllers
         [HttpGet]
         public ActionResult<List<Circle>> Get()
         {
+            //Returns all the random circles that were generated.
             return context.Circles.ToList();
         }
 
@@ -31,14 +32,14 @@ namespace Circles.Api.Controllers
            if (item==null) return NotFound();
            return item; 
         }
-        string[] colorSet = new[] {"#f25022","#7fba00","#01a4ef","#ffb901"};
+        readonly string[] colorSet = new[] {"#f25022","#7fba00","#01a4ef","#ffb901"};
         Random random = new Random();
-        [HttpGet("New")]
+        [HttpGet("Random")]
         [ProducesResponseType(400)]
-        public ActionResult<Circle> GetNewCircle([FromQuery]int? maxRadius)
+        public ActionResult<Circle> GetRandomCircle([FromQuery]int? maxRadius)
         {
             if (maxRadius == null)
-            return BadRequest("Resend request with max radius. For e.g. /Circles/New?maxRadius=100");
+            return BadRequest("Resend request with max radius. For e.g. /Circles/Random?maxRadius=100");
             
             var c = new Circle{
                 Radius = random.Next(2,maxRadius.Value),
