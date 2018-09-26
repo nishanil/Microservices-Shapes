@@ -2,27 +2,27 @@ version: '3.4'
 
 services:
   circlesapi:
-    image: nishanil/circlesapi
+    image: circlesapi:latest
     build:
       context: .
       dockerfile: Services/Circles.Api/Dockerfile
 
   squaresapi:
-    image: nishanil/squaresapi
+    image: squaresapi:latest
     build:
       context: .
       dockerfile: Services/Squares.Api/Dockerfile
 
 
   shapesapigateway:
-    image: nishanil/shapesapigateway
+    image: shapesapigateway:latest
     build:
       context: .
       dockerfile: ApiGateway/Shapes.ApiGateway/Dockerfile
 
 
   shapesweb:
-    image: nishanil/shapesweb
+    image: shapesweb:latest
     build:
       context: .
       dockerfile: Web/ShapesWeb/Dockerfile

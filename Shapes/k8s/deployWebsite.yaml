@@ -17,9 +17,9 @@ spec:
         image: nishanil/shapesweb:latest
         env:
         - name: CirclesUrl
-          value: "<yourapigatewayip>"
+          value: "http://<yourapigatewayip>"
         - name: SquaresUrl
-          value: "<yourapigatewayip>"
+          value: "http://<yourapigatewayip>"
         ports:
         - containerPort: 80
 ---
