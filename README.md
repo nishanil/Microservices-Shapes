@@ -13,7 +13,7 @@ What you can do with this sample?
 
 
 
-## Run locally
+## Run Locally
 
 ### Prerequisites
 
@@ -33,7 +33,7 @@ You can deploy and run to AKS without running it locally! This is a pure magic o
 
 To deploy on AKS, make sure you have an Azure Subscription and Azure CLI setup. Following instructions will help you with it.
 
-1. [Download and install Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)
+1. [Download and install Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 2. Login to Azure
    Open Command prompt/terminal/powershell and type in this command:
    ```
