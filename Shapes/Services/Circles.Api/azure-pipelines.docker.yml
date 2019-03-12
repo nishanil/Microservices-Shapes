@@ -10,4 +10,4 @@ variables:
 
 steps:
 - script: |
-    docker build -f Dockerfile -t $(dockerId)/$(imageName) .
+    docker build -f Dockerfile -t $(dockerId)/$(imageName) Shapes/Services/Circles.Api/
