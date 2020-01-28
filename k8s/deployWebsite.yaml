@@ -1,12 +1,15 @@
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shapesweb
+  name: shapesweb-deployment
   labels:
     app: shapesweb
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: shapesweb
   template:
     metadata:
       labels:
@@ -17,9 +20,9 @@ spec:
         image: nishanil/shapesweb:latest
         env:
         - name: CirclesUrl
-          value: "http://<yourapigatewayip>"
+          value: "http://192.168.246.77:30850"
         - name: SquaresUrl
-          value: "http://<yourapigatewayip>"
+          value: "http://192.168.246.77:30850"
         ports:
         - containerPort: 80
 ---

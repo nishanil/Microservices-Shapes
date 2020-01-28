@@ -1,10 +1,15 @@
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: circlesapi
+  name: circlesapi-deployment
+  labels:
+    app: circlesapi
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: circlesapi
   template:
     metadata:
       labels:
@@ -28,12 +33,17 @@ spec:
     app: circlesapi
 
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: squaresapi
+  name: squaresapi-deployment
+  labels:
+    app: squaresapi
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: squaresapi
   template:
     metadata:
       labels:
@@ -56,14 +66,17 @@ spec:
   selector:
     app: squaresapi
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shapesapigateway
+  name: shapesapigateway-deployment
   labels:
     app: shapesapigateway
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: shapesapigateway
   template:
     metadata:
       labels:
