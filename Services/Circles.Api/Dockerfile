@@ -1,9 +1,10 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
+
 COPY Services/Circles.Api/CirclesApi.csproj Services/Circles.Api/
 RUN dotnet restore Services/Circles.Api/CirclesApi.csproj
 COPY . .
